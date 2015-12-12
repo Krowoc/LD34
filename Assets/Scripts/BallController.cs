@@ -29,7 +29,7 @@ public class BallController : MonoBehaviour {
 			if (newScale > maximumScale)
 				newScale = maximumScale;
 
-			transform.localScale = new Vector3(newScale, newScale, 0.0f); ;
+			transform.localScale = new Vector3(newScale, newScale, newScale);
 
 		}
 
@@ -40,7 +40,7 @@ public class BallController : MonoBehaviour {
 			if (newScale < minimumScale)
 				newScale = minimumScale;
 
-			transform.localScale = new Vector3(newScale, newScale, 0.0f); ;
+			transform.localScale = new Vector3(newScale, newScale, newScale);
 
 		}
 	}

@@ -5,15 +5,16 @@ public class CameraControl : MonoBehaviour {
 
 	[SerializeField]
 	GameObject followObject;
-	Rigidbody2D followRBody;
 
 	[SerializeField]
 	float followSpeed;
 
 	[SerializeField]
-	float leadDistance = 3.0f;
+	float leadDistance = 1.0f;
+
 
 	float zPosition;
+	Rigidbody2D followRBody;
 
 	// Use this for initialization
 	void Start () {
