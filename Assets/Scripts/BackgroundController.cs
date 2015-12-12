@@ -15,7 +15,7 @@ public class BackgroundController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		startingPosition = transform.position.y;
+		startingPosition = transform.localPosition.y;
 	}
 	
 	// Update is called once per frame
@@ -27,10 +27,10 @@ public class BackgroundController : MonoBehaviour {
 			offset = scrollDistance;
 		}
 
-		Vector3 newPosition = transform.position;
+		Vector3 newPosition = transform.localPosition;
 
 		newPosition.y = startingPosition + offset;
 
-		transform.position = newPosition;
+		transform.localPosition = newPosition;
 	}
 }

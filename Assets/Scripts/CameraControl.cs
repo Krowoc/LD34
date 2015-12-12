@@ -14,13 +14,13 @@ public class CameraControl : MonoBehaviour {
 
 
 	float zPosition;
-	Rigidbody2D followRBody;
+	Rigidbody followRBody;
 
 	// Use this for initialization
 	void Start () {
 
 		zPosition = transform.position.z;
-		followRBody = followObject.GetComponent<Rigidbody2D>();
+		followRBody = followObject.GetComponent<Rigidbody>();
 
 	}
 	
