@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BallController : MonoBehaviour {
 
-	//Rigidbody2D rBody;
 	SkinnedMeshRenderer shapes;
 
 	[SerializeField]
@@ -17,7 +16,6 @@ public class BallController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//rBody = GetComponent<Rigidbody2D>();
 		shapes = GetComponentInChildren<SkinnedMeshRenderer>();
 	}
 	
@@ -48,15 +46,25 @@ public class BallController : MonoBehaviour {
 
 	void Animate(float scale)
 	{
-		Debug.Log(scale);
-		float s = Mathf.InverseLerp(minimumScale, maximumScale, scale);
+		float s = Mathf.InverseLerp(maximumScale, minimumScale, scale);
 
-		//Debug.Log(s);
-		s = (s * 200.0f) - 125.0f;
+		/*s = (s * 200.0f) - 100.0f;
 
 		if (s > 0)
+		{
 			shapes.SetBlendShapeWeight(1, s);
+			shapes.SetBlendShapeWeight(0, 0f);
+		}
+			
 		else
+		{
 			shapes.SetBlendShapeWeight(0, -s);
+			shapes.SetBlendShapeWeight(1, 0f);
+		}*/
+
+		s = s * 100.0f;
+		shapes.SetBlendShapeWeight(0, s);
+		
+
 	}
 }
