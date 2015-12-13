@@ -12,20 +12,26 @@ public class BallController : MonoBehaviour {
 	float minimumScale = 0.25f;
 
 	[SerializeField]
-	float scaleSpeed = 0.1f;
+	float scaleSpeed = 0.05f;
 
 	[SerializeField]
-	float height = 1.0f;
+	float height = 5.0f;
+
+	[SerializeField]
+	float hop = 9.0f;
 
 
 	Rigidbody rBody;
 	[SerializeField]
 	bool onGround = false;
 
+	float zPosition;
+
 	// Use this for initialization
 	void Start () {
 		shapes = GetComponentInChildren<SkinnedMeshRenderer>();
 		rBody = GetComponent<Rigidbody>();
+		zPosition = transform.position.z;
 	}
 	
 	// Update is called once per frame
@@ -45,7 +51,7 @@ public class BallController : MonoBehaviour {
 			float newScale = transform.localScale.x;
 
 			if (onGround && newScale == minimumScale)
-				rBody.AddForce(new Vector3(9f, 9f, 0f), ForceMode.Impulse); //Jump
+				rBody.AddForce(new Vector3(hop, hop, 0f), ForceMode.Impulse); //Jump
 
 			newScale += scaleSpeed;
 			if (newScale > maximumScale)
@@ -66,6 +72,11 @@ public class BallController : MonoBehaviour {
 			transform.localScale = new Vector3(newScale, newScale, newScale);
 			Animate(newScale);
 		}
+
+		Vector3 clampedPosition = transform.position;
+		clampedPosition.z = zPosition;
+		transform.position = clampedPosition;
+
 	}
 
 	void Animate(float scale)
