@@ -12,7 +12,6 @@ public class CameraControl : MonoBehaviour {
 	[SerializeField]
 	float leadDistance = 1.0f;
 
-
 	float zPosition;
 	Rigidbody followRBody;
 
