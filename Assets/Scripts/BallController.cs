@@ -25,6 +25,10 @@ public class BallController : MonoBehaviour {
 	[SerializeField]
 	bool onGround = false;
 
+	AudioSource audioFlop;
+	AudioSource audioInflate;
+	AudioSource audioDeflate;
+
 	float zPosition;
 
 	// Use this for initialization
@@ -32,6 +36,10 @@ public class BallController : MonoBehaviour {
 		shapes = GetComponentInChildren<SkinnedMeshRenderer>();
 		rBody = GetComponent<Rigidbody>();
 		zPosition = transform.position.z;
+		AudioSource[] audios = GetComponents<AudioSource>();
+		audioFlop = audios[0];
+		audioInflate = audios[1];
+		audioDeflate = audios[2];
 	}
 	
 	// Update is called once per frame
@@ -41,17 +49,31 @@ public class BallController : MonoBehaviour {
 		RaycastHit[] hits = Physics.RaycastAll(ray, height);
 
 		if (hits.Length > 0)
+		{
+			if (onGround == false)
+				audioFlop.Play();
 			onGround = true;
+		}
 		else
+		{
 			onGround = false;
+		}
 
 
-		if(Input.GetKey(KeyCode.Z))
+		if (Input.GetKey(KeyCode.Z))
 		{
 			float newScale = transform.localScale.x;
 
-			if (onGround && newScale == minimumScale)
-				rBody.AddForce(new Vector3(hop, hop, 0f), ForceMode.Impulse); //Jump
+			if (newScale == minimumScale)
+			{
+				audioInflate.Play();
+
+				if (onGround)
+				{
+					rBody.AddForce(new Vector3(hop, hop, 0f), ForceMode.Impulse); //Jump
+					
+				}
+			}
 
 			newScale += scaleSpeed;
 			if (newScale > maximumScale)
@@ -65,17 +87,33 @@ public class BallController : MonoBehaviour {
 		if (Input.GetKey(KeyCode.X))
 		{
 			float newScale = transform.localScale.x;
+
+			if (newScale == maximumScale)
+			{
+				audioDeflate.Play();
+			}
+
 			newScale -= scaleSpeed;
 			if (newScale < minimumScale)
 				newScale = minimumScale;
 
 			transform.localScale = new Vector3(newScale, newScale, newScale);
 			Animate(newScale);
+			
 		}
 
+		//Keep from drifting off the track
 		Vector3 clampedPosition = transform.position;
 		clampedPosition.z = zPosition;
 		transform.position = clampedPosition;
+
+		//Debug.Log(rBody.velocity.magnitude);
+		if(rBody.velocity.magnitude > 30.0f)
+		{
+			rBody.velocity = rBody.velocity.normalized * 30.0f;
+		}
+
+
 
 	}
 
