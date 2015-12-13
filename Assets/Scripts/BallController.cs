@@ -3,7 +3,8 @@ using System.Collections;
 
 public class BallController : MonoBehaviour {
 
-	Rigidbody2D rBody;
+	//Rigidbody2D rBody;
+	SkinnedMeshRenderer shapes;
 
 	[SerializeField]
 	float maximumScale = 1.0f;
@@ -16,8 +17,8 @@ public class BallController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rBody = GetComponent<Rigidbody2D>();
-		
+		//rBody = GetComponent<Rigidbody2D>();
+		shapes = GetComponentInChildren<SkinnedMeshRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -29,8 +30,8 @@ public class BallController : MonoBehaviour {
 			if (newScale > maximumScale)
 				newScale = maximumScale;
 
-			transform.localScale = new Vector3(newScale, newScale, 0.0f); ;
-
+			transform.localScale = new Vector3(newScale, newScale, newScale);
+			Animate(newScale);
 		}
 
 		if (Input.GetKey(KeyCode.X))
@@ -40,8 +41,22 @@ public class BallController : MonoBehaviour {
 			if (newScale < minimumScale)
 				newScale = minimumScale;
 
-			transform.localScale = new Vector3(newScale, newScale, 0.0f); ;
-
+			transform.localScale = new Vector3(newScale, newScale, newScale);
+			Animate(newScale);
 		}
+	}
+
+	void Animate(float scale)
+	{
+		Debug.Log(scale);
+		float s = Mathf.InverseLerp(minimumScale, maximumScale, scale);
+
+		//Debug.Log(s);
+		s = (s * 200.0f) - 125.0f;
+
+		if (s > 0)
+			shapes.SetBlendShapeWeight(1, s);
+		else
+			shapes.SetBlendShapeWeight(0, -s);
 	}
 }
