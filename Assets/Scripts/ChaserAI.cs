@@ -15,8 +15,6 @@ public class ChaserAI : MonoBehaviour
     [SerializeField]
     float height = 5.0f;
     [SerializeField]
-    private float xOffset;
-    [SerializeField]
     private float yOffset;
     [SerializeField]
     private float secondsTilRespawn;
@@ -67,6 +65,8 @@ public class ChaserAI : MonoBehaviour
         }
     }
 
+
+
     //If the object gets the target. If the object is blocked by a tree than a respawn occurs. 
     void OnCollisionEnter(Collision col)
     {
@@ -93,7 +93,7 @@ public class ChaserAI : MonoBehaviour
         Debug.Log("Respawn started");
         yield return new WaitForSeconds(secondsTilRespawn);
         //Creates a respawn location with the target location with an offset so, it will not be on top of the target
-        Vector3 respawnPositon = new Vector3(target.transform.position.x - xOffset, target.transform.position.y + yOffset);
+        Vector3 respawnPositon = new Vector3(target.transform.position.x, target.transform.position.y + yOffset);
         rbAI.position = respawnPositon;
         following = true;
 
