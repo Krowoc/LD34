@@ -27,8 +27,8 @@ public class CatTrigger : MonoBehaviour {
 		else
 		{
 			cat.Death();
-			gameObject.SetActive(false);
-			//GameObject.Destroy(transform.parent.gameObject);
+			//gameObject.SetActive(false);
+			GameObject.Destroy(transform.parent.gameObject);
 		}
 			
 	}
