@@ -15,8 +15,6 @@ public class ChaserAI : MonoBehaviour
     [SerializeField]
     float height = 5.0f;
     [SerializeField]
-    float sideForce = 5.0f;
-    [SerializeField]
     private float xOffset;
     [SerializeField]
     private float yOffset;
@@ -24,32 +22,32 @@ public class ChaserAI : MonoBehaviour
     private float secondsTilRespawn;
     private bool onGround = true;
     private bool following = true;
+    [SerializeField]
+    private GameObject chaser;
+    private Rigidbody rbAI;
     
  
 
     void Start()
     {
+        rbAI = chaser.GetComponent<Rigidbody>();
         transform.LookAt(target.transform);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         checkIfGrounded();
 
         if (following)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+            rbAI.MovePosition(Vector3.MoveTowards(chaser.transform.position, target.transform.position, moveSpeed * Time.deltaTime));
         }
-    }
 
-    void LateUpdate()
-    {
+        //Pushes the object down so, it doesn't move with the targer upward
         if (!onGround)
         {
-            Rigidbody rb = target.GetComponent<Rigidbody>();
-            rb.AddForce(new Vector3(-sideForce, -pushDownForce));
+            rbAI.AddForce(new Vector3(0,-pushDownForce,0));
         }
-
     }
 
 
@@ -75,13 +73,14 @@ public class ChaserAI : MonoBehaviour
         Debug.Log(col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
+            //Death method start here
             Debug.Log("Fisherman catches fish");
         }
 
+        //Respawns the chaser
         else if (col.gameObject.tag == "Tree")
         {
-            Rigidbody rb = target.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
+            rbAI.velocity = Vector3.zero;
             following = false;
             StartCoroutine(Respawn());
         }
@@ -93,8 +92,9 @@ public class ChaserAI : MonoBehaviour
     {
         Debug.Log("Respawn started");
         yield return new WaitForSeconds(secondsTilRespawn);
+        //Creates a respawn location with the target location with an offset so, it will not be on top of the target
         Vector3 respawnPositon = new Vector3(target.transform.position.x - xOffset, target.transform.position.y + yOffset);
-        transform.position = respawnPositon;
+        rbAI.position = respawnPositon;
         following = true;
 
     }
