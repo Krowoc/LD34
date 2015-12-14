@@ -22,8 +22,14 @@ public class ChaserAI : MonoBehaviour
     private bool following = true;
     [SerializeField]
     private GameObject chaser;
+    [SerializeField]
+    private float maxDistance;
+    [SerializeField]
+    private float minDistance;
     private Rigidbody rbAI;
     private Animator chaserAnimation;
+    private bool respawing = false;
+    private GameObject chaserPrefab;
     
  
 
@@ -33,6 +39,11 @@ public class ChaserAI : MonoBehaviour
         chaserAnimation = chaser.GetComponent<Animator>();
         transform.LookAt(target.transform);
         chaserAnimation.SetTrigger("Chasing");
+    }
+
+    void Update()
+    {
+        checkIfTooFar();
     }
 
     void FixedUpdate()
@@ -54,6 +65,18 @@ public class ChaserAI : MonoBehaviour
         }
     }
 
+    void checkIfTooFar()
+    {
+        float distance = Vector3.Distance(rbAI.position, target.transform.position);
+        if(distance > maxDistance || distance < minDistance && !respawing)
+        {
+            Debug.Log("Too Far Away from target, respawn started");
+            chaserAnimation.SetTrigger("Idle");
+            respawing = true;
+            rbAI.velocity = Vector3.zero;
+            StartCoroutine(Respawn());
+        }
+    }
 
     //Checks if the object is grounded so, it cannot follow the target upward
     void checkIfGrounded()
@@ -75,7 +98,7 @@ public class ChaserAI : MonoBehaviour
     //If the object gets the target. If the object is blocked by a tree than a respawn occurs. 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log(col.gameObject.tag);
+        //Debug.Log(col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
             //Death method start here
@@ -84,11 +107,13 @@ public class ChaserAI : MonoBehaviour
         }
 
         //Respawns the chaser
-        else if (col.gameObject.tag == "Tree")
+        else if (col.gameObject.tag == "Tree" && !respawing)
         {
+            Debug.Log("Hit a tree, respawn started");
             rbAI.velocity = Vector3.zero;
             chaserAnimation.SetTrigger("Idle");
             following = false;
+            respawing = true;
             StartCoroutine(Respawn());
         }
 
@@ -97,14 +122,15 @@ public class ChaserAI : MonoBehaviour
     //Respawns the AI after a certain amount of seconds
     IEnumerator Respawn()
     {
-        Debug.Log("Respawn started");
         yield return new WaitForSeconds(secondsTilRespawn);
+        GameObject.Destroy(chaser);
         //Creates a respawn location with the target location with an offset so, it will not be on top of the target
         Vector3 respawnPositon = new Vector3(target.transform.position.x, target.transform.position.y + yOffset);
-        rbAI.position = respawnPositon;
+        Instantiate(chaser, respawnPositon, Quaternion.identity);
+        //rbAI.position = respawnPositon;
         following = true;
+        respawing = false;
         chaserAnimation.SetTrigger("Chasing");
-        //transform.LookAt(target.transform);
 
     }
        
