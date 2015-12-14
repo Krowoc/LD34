@@ -29,6 +29,12 @@ public class BallController : MonoBehaviour {
 	AudioSource audioInflate;
 	AudioSource audioDeflate;
 
+	[SerializeField]
+	float airTime;
+	float airStartTime;
+	[SerializeField]
+	float airTimeRecord;
+
 	float zPosition;
 
 	// Use this for initialization
@@ -36,6 +42,7 @@ public class BallController : MonoBehaviour {
 		shapes = GetComponentInChildren<SkinnedMeshRenderer>();
 		rBody = GetComponent<Rigidbody>();
 		zPosition = transform.position.z;
+
 		AudioSource[] audios = GetComponents<AudioSource>();
 		audioFlop = audios[0];
 		audioInflate = audios[1];
@@ -48,14 +55,29 @@ public class BallController : MonoBehaviour {
 		Ray ray = new Ray(transform.position, Vector3.down);
 		RaycastHit[] hits = Physics.RaycastAll(ray, height);
 
+		//If the character is in contact with the ground
 		if (hits.Length > 0)
 		{
+			//If landing
 			if (onGround == false)
+			{
+				airTime = Time.time - airStartTime;
+				Debug.Log(airTime);
+
+				if (airTime > airTimeRecord)
+					airTimeRecord = airTime;
+
 				audioFlop.Play();
+			}
+
 			onGround = true;
 		}
 		else
 		{
+			//If taking off
+			if (onGround == true)
+				airStartTime = Time.time;
+
 			onGround = false;
 		}
 
@@ -80,7 +102,7 @@ public class BallController : MonoBehaviour {
 				newScale = maximumScale;
 			
 			transform.localScale = new Vector3(newScale, newScale, newScale);
-			Animate(newScale);
+			AnimateInflation(newScale);
 			
 		}
 
@@ -98,7 +120,7 @@ public class BallController : MonoBehaviour {
 				newScale = minimumScale;
 
 			transform.localScale = new Vector3(newScale, newScale, newScale);
-			Animate(newScale);
+			AnimateInflation(newScale);
 			
 		}
 
@@ -117,27 +139,27 @@ public class BallController : MonoBehaviour {
 
 	}
 
-	void Animate(float scale)
+	void AnimateInflation(float scale)
 	{
 		float s = Mathf.InverseLerp(maximumScale, minimumScale, scale);
-
-		/*s = (s * 200.0f) - 100.0f;
-
-		if (s > 0)
-		{
-			shapes.SetBlendShapeWeight(1, s);
-			shapes.SetBlendShapeWeight(0, 0f);
-		}
-			
-		else
-		{
-			shapes.SetBlendShapeWeight(0, -s);
-			shapes.SetBlendShapeWeight(1, 0f);
-		}*/
-
-		s = s * 100.0f;
-		shapes.SetBlendShapeWeight(0, s);
 		
+		shapes.SetBlendShapeWeight(0, s * 100.0f);
+		
+	}
+
+	public bool isCaught()
+	{
+		float midScale = minimumScale + ((maximumScale - minimumScale) / 2);
+
+		if(transform.localScale.x > midScale)
+			return false;
+
+		return true;
+	}
+
+	public void Death()
+	{
 
 	}
 }
+
