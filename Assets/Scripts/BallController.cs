@@ -6,6 +6,9 @@ public class BallController : MonoBehaviour {
 	SkinnedMeshRenderer shapes;
 
 	[SerializeField]
+	float scale = 0.0f;
+
+	[SerializeField]
 	float maximumScale = 1.0f;
 
 	[SerializeField]
@@ -39,6 +42,7 @@ public class BallController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		shapes = GetComponentInChildren<SkinnedMeshRenderer>();
 		rBody = GetComponent<Rigidbody>();
 		zPosition = transform.position.z;
@@ -84,45 +88,60 @@ public class BallController : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.Z))
 		{
-			float newScale = transform.localScale.x;
-
-			if (newScale == minimumScale)
+			if (scale == 0.0f)
 			{
 				audioInflate.Play();
 
 				if (onGround)
 				{
-					rBody.AddForce(new Vector3(hop, hop, 0f), ForceMode.Impulse); //Jump
-					
+					//Jump
+					rBody.AddForce(new Vector3(hop, hop, 0f), ForceMode.Impulse);
+
 				}
 			}
 
-			newScale += scaleSpeed;
-			if (newScale > maximumScale)
-				newScale = maximumScale;
+			scale += scaleSpeed;
+			if (scale > 1.0f)
+				scale = 1.0f;
+
+
+
+
+
 			
-			transform.localScale = new Vector3(newScale, newScale, newScale);
-			AnimateInflation(newScale);
+
+			/*newScale += scaleSpeed;
+			if (newScale > maximumScale)
+				newScale = maximumScale;*/
+
+
+			
+			
 			
 		}
 
 		if (Input.GetKey(KeyCode.X))
 		{
-			float newScale = transform.localScale.x;
+			//float newScale = transform.localScale.x;
 
-			if (newScale == maximumScale)
+			if (scale == 1.0f)
 			{
 				audioDeflate.Play();
 			}
 
-			newScale -= scaleSpeed;
-			if (newScale < minimumScale)
-				newScale = minimumScale;
+			scale -= scaleSpeed;
+			if (scale < 0.0f)
+				scale = 0.0f;
 
-			transform.localScale = new Vector3(newScale, newScale, newScale);
-			AnimateInflation(newScale);
+			//transform.localScale = new Vector3(newScale, newScale, newScale);
+			//AnimateInflation(newScale);
 			
 		}
+
+		float newScale = Mathf.Lerp(minimumScale, maximumScale, scale); //transform.localScale.x;
+		transform.localScale = new Vector3(newScale, newScale, newScale);
+		AnimateInflation(newScale);
+
 
 		//Keep from drifting off the track
 		Vector3 clampedPosition = transform.position;
@@ -153,13 +172,20 @@ public class BallController : MonoBehaviour {
 
 		if(transform.localScale.x > midScale)
 			return false;
-
-		return true;
+		else
+		{
+			Death();
+			return true;
+		}
+		
 	}
 
 	public void Death()
 	{
-
+		//rBody.isKinematic = false;
+		//rBody.detectCollisions = true;
+		rBody.velocity = Vector3.zero;
+		rBody.useGravity = false;
 	}
 }
 
