@@ -3,13 +3,11 @@ using System.Collections;
 
 public class CatAnimationTrigger : MonoBehaviour {
 
-	Animator anim;
 	CatController cat;
 
 	// Use this for initialization
 	void Start()
 	{
-		anim = GetComponentInChildren<Animator>();
 		cat = GetComponentInChildren<CatController>();
 	}
 

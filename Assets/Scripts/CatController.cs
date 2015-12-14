@@ -16,7 +16,7 @@ public class CatController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	public void Pounce()
@@ -45,17 +45,6 @@ public class CatController : MonoBehaviour {
 		yield return new WaitForSeconds(8.0f);
 
 		GameObject.Destroy(gameObject);
-
-		/*Destroy(rBody);
-
-		//Vector3 newPosition = transform.parent.parent.parent.position;
-
-		//newPosition.z = 0.0f;
-
-		transform.rotation = Quaternion.Euler(Vector3.zero);
-
-		transform.parent.parent.parent.position = Vector3.zero; //newPosition;
-
-		anim.SetTrigger("Idle");*/
+		
 	}
 }
