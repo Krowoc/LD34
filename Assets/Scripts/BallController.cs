@@ -103,27 +103,11 @@ public class BallController : MonoBehaviour {
 			scale += scaleSpeed;
 			if (scale > 1.0f)
 				scale = 1.0f;
-
-
-
-
-
-			
-
-			/*newScale += scaleSpeed;
-			if (newScale > maximumScale)
-				newScale = maximumScale;*/
-
-
-			
-			
 			
 		}
 
 		if (Input.GetKey(KeyCode.X))
 		{
-			//float newScale = transform.localScale.x;
-
 			if (scale == 1.0f)
 			{
 				audioDeflate.Play();
@@ -132,13 +116,10 @@ public class BallController : MonoBehaviour {
 			scale -= scaleSpeed;
 			if (scale < 0.0f)
 				scale = 0.0f;
-
-			//transform.localScale = new Vector3(newScale, newScale, newScale);
-			//AnimateInflation(newScale);
 			
 		}
 
-		float newScale = Mathf.Lerp(minimumScale, maximumScale, scale); //transform.localScale.x;
+		float newScale = Mathf.Lerp(minimumScale, maximumScale, scale);
 		transform.localScale = new Vector3(newScale, newScale, newScale);
 		AnimateInflation(newScale);
 
@@ -185,7 +166,9 @@ public class BallController : MonoBehaviour {
 		//rBody.isKinematic = false;
 		//rBody.detectCollisions = true;
 		rBody.velocity = Vector3.zero;
-		rBody.useGravity = false;
+		//rBody.useGravity = false;
+		rBody.freezeRotation = true;
+		
 	}
 }
 
