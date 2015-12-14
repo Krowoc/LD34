@@ -35,6 +35,8 @@ public class CatController : MonoBehaviour {
 	{
 		anim.SetTrigger("Collide");
 
+		GetComponent<AudioSource>().Play();
+
 		transform.SetParent(null);
 
 		Rigidbody rBody = gameObject.AddComponent<Rigidbody>();
@@ -44,7 +46,13 @@ public class CatController : MonoBehaviour {
 
 		yield return new WaitForSeconds(8.0f);
 
+
 		GameObject.Destroy(gameObject);
+		
+	}
+
+	public void Win()
+	{
 		
 	}
 }

@@ -23,7 +23,11 @@ public class CatTrigger : MonoBehaviour {
 			return;
 
 		if (fish.isCaught())
-			Debug.Log("Caught");
+		{
+			fish.Death();
+			GetComponent<AudioSource>().Play();
+			//Debug.Log("Caught");
+		}
 		else
 		{
 			cat.Death();

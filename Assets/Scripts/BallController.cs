@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour {
 	float height = 5.0f;
 
 	[SerializeField]
-	float hop = 9.0f;
+	float hopForce = 9.0f;
 
 
 	Rigidbody rBody;
@@ -32,13 +32,14 @@ public class BallController : MonoBehaviour {
 	AudioSource audioInflate;
 	AudioSource audioDeflate;
 
-	[SerializeField]
 	float airTime;
 	float airStartTime;
-	[SerializeField]
-	float airTimeRecord;
+	//[SerializeField]
+	//float airTimeRecord;
 
 	float zPosition;
+
+	bool isDead = false;
 
 	// Use this for initialization
 	void Start () {
@@ -56,6 +57,11 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (isDead)
+			return;
+
+		Manager.singleton.updateDistanceScore(transform.position.x);
+
 		Ray ray = new Ray(transform.position, Vector3.down);
 		RaycastHit[] hits = Physics.RaycastAll(ray, height);
 
@@ -66,10 +72,11 @@ public class BallController : MonoBehaviour {
 			if (onGround == false)
 			{
 				airTime = Time.time - airStartTime;
-				Debug.Log(airTime);
 
-				if (airTime > airTimeRecord)
-					airTimeRecord = airTime;
+				Manager.singleton.updateAirTimeScore(airTime);
+
+				//if (airTime > airTimeRecord)
+				//	airTimeRecord = airTime;
 
 				audioFlop.Play();
 			}
@@ -85,6 +92,15 @@ public class BallController : MonoBehaviour {
 			onGround = false;
 		}
 
+		if(Input.GetKeyDown(KeyCode.Z))
+		{
+			if (onGround)
+			{
+				float f = hopForce * ((- scale) + 1.0f);
+				Jump(f);
+			}
+
+		}
 
 		if (Input.GetKey(KeyCode.Z))
 		{
@@ -92,12 +108,7 @@ public class BallController : MonoBehaviour {
 			{
 				audioInflate.Play();
 
-				if (onGround)
-				{
-					//Jump
-					rBody.AddForce(new Vector3(hop, hop, 0f), ForceMode.Impulse);
 
-				}
 			}
 
 			scale += scaleSpeed;
@@ -139,6 +150,11 @@ public class BallController : MonoBehaviour {
 
 	}
 
+	void Jump(float force)
+	{
+		rBody.AddForce(new Vector3(hopForce, hopForce, 0f), ForceMode.Impulse);
+	}
+
 	void AnimateInflation(float scale)
 	{
 		float s = Mathf.InverseLerp(maximumScale, minimumScale, scale);
@@ -155,7 +171,7 @@ public class BallController : MonoBehaviour {
 			return false;
 		else
 		{
-			Death();
+			//Death();
 			return true;
 		}
 		
@@ -163,12 +179,9 @@ public class BallController : MonoBehaviour {
 
 	public void Death()
 	{
-		//rBody.isKinematic = false;
-		//rBody.detectCollisions = true;
 		rBody.velocity = Vector3.zero;
-		//rBody.useGravity = false;
 		rBody.freezeRotation = true;
-		
+		isDead = true;
 	}
 }
 
