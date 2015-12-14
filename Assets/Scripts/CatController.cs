@@ -4,8 +4,7 @@ using System.Collections;
 public class CatController : MonoBehaviour {
 
 	Animator anim;
-	Rigidbody rBody;
-
+	
 	[SerializeField]
 	float collisionForce = 3.0f;
 
@@ -13,9 +12,6 @@ public class CatController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		anim = GetComponentInChildren<Animator>();
-		rBody = GetComponentInChildren<Rigidbody>();
-		rBody.detectCollisions = false;
-		rBody.useGravity = false;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +21,8 @@ public class CatController : MonoBehaviour {
 
 	public void Pounce()
 	{
-		anim.SetTrigger("Pounce");
+		if(anim != null)
+			anim.SetTrigger("Pounce");
 
 	}
 
@@ -37,14 +34,28 @@ public class CatController : MonoBehaviour {
 	IEnumerator DeathCoroutine()
 	{
 		anim.SetTrigger("Collide");
-		rBody.gameObject.transform.SetParent(null);
-		rBody.detectCollisions = true;
-		rBody.useGravity = true;
+
+		transform.SetParent(null);
+
+		Rigidbody rBody = gameObject.AddComponent<Rigidbody>();
+
 		rBody.AddForce(collisionForce, 0f, collisionForce, ForceMode.VelocityChange);
 		
 
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(8.0f);
 
 		GameObject.Destroy(gameObject);
+
+		/*Destroy(rBody);
+
+		//Vector3 newPosition = transform.parent.parent.parent.position;
+
+		//newPosition.z = 0.0f;
+
+		transform.rotation = Quaternion.Euler(Vector3.zero);
+
+		transform.parent.parent.parent.position = Vector3.zero; //newPosition;
+
+		anim.SetTrigger("Idle");*/
 	}
 }
