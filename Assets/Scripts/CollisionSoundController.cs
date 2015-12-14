@@ -3,12 +3,12 @@ using System.Collections;
 
 public class CollisionSoundController : MonoBehaviour {
 
-	AudioSource audio;
+	AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
 
-		audio = GetComponent<AudioSource>();
+		audioSource = GetComponent<AudioSource>();
 
 	}
 	
@@ -19,7 +19,7 @@ public class CollisionSoundController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(!audio.isPlaying)
-			audio.Play();
+		if(!audioSource.isPlaying)
+			audioSource.Play();
 	}
 }
