@@ -40,6 +40,7 @@ public class BallController : MonoBehaviour {
 	float zPosition;
 
 	bool isDead = false;
+	bool isStarted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -57,7 +58,7 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (isDead)
+		if (isDead || !isStarted)
 			return;
 
 		Manager.singleton.updateDistanceScore(transform.position.x);
@@ -150,7 +151,7 @@ public class BallController : MonoBehaviour {
 
 	}
 
-	void Jump(float force)
+	public void Jump(float force)
 	{
 		rBody.AddForce(new Vector3(hopForce, hopForce, 0f), ForceMode.Impulse);
 	}
@@ -182,6 +183,11 @@ public class BallController : MonoBehaviour {
 		rBody.velocity = Vector3.zero;
 		rBody.freezeRotation = true;
 		isDead = true;
+	}
+
+	public void StartRolling()
+	{
+		isStarted = true;
 	}
 }
 

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ChefController : MonoBehaviour {
 
-	[SerializeField]
-	float runningSpeed = 0.2f;
+	//[SerializeField]
+	//float runningSpeed = 0.2f;
 
 	[SerializeField]
 	float catchupDistance = 100.0f;
@@ -12,7 +12,12 @@ public class ChefController : MonoBehaviour {
 	[SerializeField]
 	GameObject target;
 
+	[SerializeField]
+	AnimationCurve speedOverTime;
+
 	Animator anim;
+
+	bool isStarted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -23,10 +28,14 @@ public class ChefController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (!isStarted)
+			return;
+		
 		Vector3 newPosition = transform.position;
 
 		//Move forward
-		newPosition.x += runningSpeed;
+		//newPosition.x += runningSpeed;
+		newPosition.x += speedOverTime.Evaluate(Time.time * 0.1f);
 
 		//Keep on the ground
 		RaycastHit hit = new RaycastHit();
@@ -44,7 +53,7 @@ public class ChefController : MonoBehaviour {
 		//If ahead of fish, stop
 		if(distance < 0)
 		{
-			newPosition.x -= runningSpeed;
+			newPosition.x -= speedOverTime.Evaluate(Time.time * 0.1f);
 			anim.SetBool("Running", false);
 		}
 		else
@@ -61,5 +70,10 @@ public class ChefController : MonoBehaviour {
 	public void Win()
 	{
 		anim.SetTrigger("KnifeWave");
+	}
+
+	public void StartRunning()
+	{
+		isStarted = true;
 	}
 }
