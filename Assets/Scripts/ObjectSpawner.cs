@@ -9,6 +9,7 @@ public class ObjectSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		posX = transform.position.x;
+		Spawn();
 	}
 	
 	// Update is called once per frame
