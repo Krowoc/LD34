@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CatTrigger : MonoBehaviour {
+public class CatAnimationTrigger : MonoBehaviour {
 
-	[SerializeField]
+	Animator anim;
 	CatController cat;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
+		anim = GetComponentInChildren<Animator>();
 		cat = GetComponentInChildren<CatController>();
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		
+	void Update()
+	{
+
+
 	}
 
 	void OnTriggerEnter(Collider collider)
@@ -22,15 +26,7 @@ public class CatTrigger : MonoBehaviour {
 		if (fish == null)
 			return;
 
-		if (fish.isCaught())
-			Debug.Log("Caught");
-		else
-		{
-			cat.Death();
-			//gameObject.SetActive(false);
-			GameObject.Destroy(transform.parent.gameObject);
-		}
-			
+		cat.Pounce();
+		
 	}
-
 }
