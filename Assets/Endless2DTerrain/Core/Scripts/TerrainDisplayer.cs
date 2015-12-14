@@ -174,8 +174,9 @@ public class TerrainDisplayer : MonoBehaviour {
             //Update our prefabs with the current terrain info       
             PrefabManager.PlacePrefabs(TerrainManager);
 
-            TerrainManager.Cleanup(leftSide.x - leadAmount);
-            PrefabManager.Cleanup(leftSide.x - leadAmount);
+			//Modified to allow more time for left-hand prefabs and terrain
+            TerrainManager.Cleanup(leftSide.x - leadAmount - 100);
+            PrefabManager.Cleanup(leftSide.x - leadAmount - 100);
         }
 
         //Only need this when we are no longer generating any new terrain but still need to do the final object cleanup
