@@ -1,0 +1,716 @@
+fileFormatVersion: 2
+guid: 260533200b86d4b9ea44316bb46e3741
+timeCreated: 1450044059
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm-Raccoon
+    100002: Body
+    100004: Cube_002
+    100006: Ear_L
+    100008: Ear_R
+    100010: FFootIK_L
+    100012: FFootIK_R
+    100014: FForeleg_L
+    100016: FForeleg_R
+    100018: FHand_L
+    100020: FHand_R
+    100022: FLeg_L
+    100024: FLeg_R
+    100026: FPole_L
+    100028: FPole_R
+    100030: Head
+    100032: Hip
+    100034: //RootNode
+    100036: Neck
+    100038: RFoot_L
+    100040: RFoot_R
+    100042: RFootIK_L
+    100044: RFootIK_R
+    100046: Ribs
+    100048: RLeg_L
+    100050: RLeg_R
+    100052: Root
+    100054: RPole_L
+    100056: RPole_R
+    100058: RShin_L
+    100060: RShin_R
+    100062: RToe_L
+    100064: RToe_R
+    100066: Tail2
+    100068: Tail2_001
+    100070: Tail3
+    100072: Tail3_001
+    100074: TailBase
+    100076: TailBase_001
+    100078: TailIK
+    100080: TailTarget
+    100082: TailTip
+    400000: Arm-Raccoon
+    400002: Body
+    400004: Cube_002
+    400006: Ear_L
+    400008: Ear_R
+    400010: FFootIK_L
+    400012: FFootIK_R
+    400014: FForeleg_L
+    400016: FForeleg_R
+    400018: FHand_L
+    400020: FHand_R
+    400022: FLeg_L
+    400024: FLeg_R
+    400026: FPole_L
+    400028: FPole_R
+    400030: Head
+    400032: Hip
+    400034: //RootNode
+    400036: Neck
+    400038: RFoot_L
+    400040: RFoot_R
+    400042: RFootIK_L
+    400044: RFootIK_R
+    400046: Ribs
+    400048: RLeg_L
+    400050: RLeg_R
+    400052: Root
+    400054: RPole_L
+    400056: RPole_R
+    400058: RShin_L
+    400060: RShin_R
+    400062: RToe_L
+    400064: RToe_R
+    400066: Tail2
+    400068: Tail2_001
+    400070: Tail3
+    400072: Tail3_001
+    400074: TailBase
+    400076: TailBase_001
+    400078: TailIK
+    400080: TailTarget
+    400082: TailTip
+    4300000: Cube_002
+    7400000: Default Take
+    7400002: ArmatureAction_001
+    7400004: Cat-Alert
+    7400006: Cat-Ball
+    7400008: Cat-Collide
+    7400010: Cat-Idle
+    7400012: Cat-Pounce
+    7400014: PoseLib
+    9500000: //RootNode
+    13700000: Cube_002
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cat-Alert
+      takeName: Cat-Alert
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm-Raccoon
+        weight: 1
+      - path: Arm-Raccoon/Root
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L/FPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R/FPole_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L/FHand_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R/FHand_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L/RToe_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R/RToe_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001/TailTip
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L/RPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R/RPole_R
+        weight: 1
+      - path: Arm-Raccoon/TailIK
+        weight: 1
+      - path: Arm-Raccoon/TailTarget
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cat-Ball
+      takeName: Cat-Ball
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm-Raccoon
+        weight: 1
+      - path: Arm-Raccoon/Root
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L/FPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R/FPole_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L/FHand_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R/FHand_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L/RToe_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R/RToe_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001/TailTip
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L/RPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R/RPole_R
+        weight: 1
+      - path: Arm-Raccoon/TailIK
+        weight: 1
+      - path: Arm-Raccoon/TailTarget
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cat-Collide
+      takeName: Cat-Collide
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm-Raccoon
+        weight: 1
+      - path: Arm-Raccoon/Root
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L/FPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R/FPole_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L/FHand_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R/FHand_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L/RToe_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R/RToe_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001/TailTip
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L/RPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R/RPole_R
+        weight: 1
+      - path: Arm-Raccoon/TailIK
+        weight: 1
+      - path: Arm-Raccoon/TailTarget
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cat-Idle
+      takeName: Cat-Idle
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm-Raccoon
+        weight: 1
+      - path: Arm-Raccoon/Root
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L/FPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R/FPole_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L/FHand_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R/FHand_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L/RToe_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R/RToe_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001/TailTip
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L/RPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R/RPole_R
+        weight: 1
+      - path: Arm-Raccoon/TailIK
+        weight: 1
+      - path: Arm-Raccoon/TailTarget
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cat-Pounce
+      takeName: Cat-Pounce
+      firstFrame: 0
+      lastFrame: 42
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm-Raccoon
+        weight: 1
+      - path: Arm-Raccoon/Root
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_L/FPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/FFootIK_R/FPole_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_L/FForeleg_L/FHand_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/FLeg_R/FForeleg_R/FHand_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/Body/Ribs/Neck/Head/Ear_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_L/RShin_L/RFoot_L/RToe_L
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/RLeg_R/RShin_R/RFoot_R/RToe_R
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001
+        weight: 1
+      - path: Arm-Raccoon/Root/Hip/TailBase/TailBase_001/Tail2/Tail2_001/Tail3/Tail3_001/TailTip
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_L/RPole_L
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R
+        weight: 1
+      - path: Arm-Raccoon/Root/RFootIK_R/RPole_R
+        weight: 1
+      - path: Arm-Raccoon/TailIK
+        weight: 1
+      - path: Arm-Raccoon/TailTarget
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

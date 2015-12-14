@@ -9,9 +9,6 @@ public class ChaserAI : MonoBehaviour
     private GameObject target;
     [SerializeField]
     private float moveSpeed = 3;
-    [SerializeField]
-    private float boost = 15;
-    private float resetMoveSpeed;
     //the amount to push down the object if its not grounded
     [SerializeField]
     private float pushDownForce = 100;
@@ -23,21 +20,26 @@ public class ChaserAI : MonoBehaviour
     private float xOffset;
     [SerializeField]
     private float yOffset;
+    [SerializeField]
+    private float secondsTilRespawn;
     private bool onGround = true;
+    private bool following = true;
     
  
 
     void Start()
     {
         transform.LookAt(target.transform);
-        resetMoveSpeed = moveSpeed;
     }
 
     void Update()
     {
         checkIfGrounded();
 
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+        if (following)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+        }
     }
 
     void LateUpdate()
@@ -67,17 +69,7 @@ public class ChaserAI : MonoBehaviour
         }
     }
 
-    void checkIfStuck()
-    {
-       Rigidbody rb = target.GetComponent<Rigidbody>();
-
-        if(rb.velocity.magnitude <= 1)
-        {
-            Respawn();
-        }
-    }
-
-    //If the object gets the target
+    //If the object gets the target. If the object is blocked by a tree than a respawn occurs. 
     void OnCollisionEnter(Collision col)
     {
         Debug.Log(col.gameObject.tag);
@@ -86,19 +78,25 @@ public class ChaserAI : MonoBehaviour
             Debug.Log("Fisherman catches fish");
         }
 
-        else
+        else if (col.gameObject.tag == "Tree")
         {
-            checkIfStuck();
+            Rigidbody rb = target.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            following = false;
+            StartCoroutine(Respawn());
         }
-  
+
     }
 
-    void Respawn()
+    //Respawns the AI after a certain amount of seconds
+    IEnumerator Respawn()
     {
-
-        Vector3 respawnPositon = new Vector3(target.transform.position.x - xOffset, target.transform.position.y - yOffset);
-
+        Debug.Log("Respawn started");
+        yield return new WaitForSeconds(secondsTilRespawn);
+        Vector3 respawnPositon = new Vector3(target.transform.position.x - xOffset, target.transform.position.y + yOffset);
         transform.position = respawnPositon;
+        following = true;
+
     }
        
         
