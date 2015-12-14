@@ -105,7 +105,8 @@ namespace Endless2DTerrain
                         {
                             for (int k = 0; k < prefabsToAdd.Count(); k++)
                             {
-                                PrefabQueue pq = prefabsToAdd[k];
+								PrefabQueue pq = prefabsToAdd[k];
+								
 
                                 //Determine if this prefab is allowed to be placed on this terrain rule
                                 var currentRule = tm.VertexGen.CurrentTerrainRule;
@@ -229,6 +230,7 @@ namespace Endless2DTerrain
                 if (prefab.transform.position.x < beginX)
                 {
                     prefabsToRemove.Add(prefab);
+					//prefab.SetActive(false); //Adam
                 }
             }
 
