@@ -180,6 +180,8 @@ public class BallController : MonoBehaviour {
 
 	public void Death()
 	{
+		if (isDead)
+			return;
 		rBody.velocity = Vector3.zero;
 		rBody.freezeRotation = true;
 		isDead = true;
