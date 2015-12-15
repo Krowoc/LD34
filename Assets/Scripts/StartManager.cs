@@ -10,10 +10,11 @@ public class StartManager : MonoBehaviour {
 	ChefController chef;
 
 	[SerializeField]
-	float delay = 2.0f;
+	float delay = 4.0f;
 
 	// Use this for initialization
 	void Start () {
+		//bool f = Manager.singleton.fading;
 		StartCoroutine(StartLevel());
 	}
 	
@@ -30,7 +31,7 @@ public class StartManager : MonoBehaviour {
 		fish.StartRolling();
 		//fish.Jump(8000.0f);
 		Rigidbody frb = fish.gameObject.GetComponent<Rigidbody>();
-		frb.AddForce(10f, 10f, 0f, ForceMode.VelocityChange);
+		frb.AddForce(11f, 10f, 0f, ForceMode.VelocityChange);
 		chef.StartRunning();
 	}
 }

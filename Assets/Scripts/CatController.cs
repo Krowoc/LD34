@@ -42,7 +42,8 @@ public class CatController : MonoBehaviour {
 		Rigidbody rBody = gameObject.AddComponent<Rigidbody>();
 
 		rBody.AddForce(collisionForce, 0f, collisionForce, ForceMode.VelocityChange);
-		
+
+		Manager.singleton.updateCatScore();
 
 		yield return new WaitForSeconds(8.0f);
 

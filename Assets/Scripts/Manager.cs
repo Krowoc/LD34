@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager : SingletonMonoBehaviour<Manager>
 {
+	//public bool fading;
+
+	SceneFade fadeObject;
 
 	int catScore = 0;
-	float distancceScore = 0.0f;
+	float distanceScore = 0.0f;
 	float airTimeScore = 0.0f;
 
 	Text scoreText;
@@ -15,7 +19,8 @@ public class Manager : SingletonMonoBehaviour<Manager>
 	// Use this for initialization
 	void Start () {
 
-		scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+
+
 
 	}
 
@@ -28,10 +33,19 @@ public class Manager : SingletonMonoBehaviour<Manager>
 
 	public void updateDistanceScore(float distance)
 	{
-		if (distance > distancceScore)
-			distancceScore = distance;
+		if(scoreText == null)
+		{
+			GameObject go = GameObject.Find("ScoreText");
+			if (go != null)
+				scoreText = go.GetComponent<Text>();
+			else
+				return;
+		}
 
-		int d = (int)distancceScore;
+		if (distance > distanceScore)
+			distanceScore = distance;
+
+		int d = (int)distanceScore;
 		scoreText.text = d.ToString();
 	}
 
@@ -43,4 +57,32 @@ public class Manager : SingletonMonoBehaviour<Manager>
 
 	}
 
+	public void EndLevel(string nextLevel)
+	{
+		if (fadeObject == null)
+		{
+			GameObject go = GameObject.Find("FadeObject");
+			if (go != null)
+				fadeObject = go.GetComponent<SceneFade>();
+			else
+				return;
+		}
+
+		
+		StartCoroutine(EndLevelCoroutine(nextLevel));
+	}
+
+	IEnumerator EndLevelCoroutine(string nextLevel)
+	{
+		fadeObject.FadeOut(Color.white, 2.0f);
+
+		yield return new WaitForSeconds(2.0f);
+
+		SceneManager.LoadScene(nextLevel);
+	}
+
+	public float GetDistanceScore()
+	{
+		return distanceScore;
+	}
 }

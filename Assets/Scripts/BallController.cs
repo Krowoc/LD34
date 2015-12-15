@@ -183,6 +183,8 @@ public class BallController : MonoBehaviour {
 		rBody.velocity = Vector3.zero;
 		rBody.freezeRotation = true;
 		isDead = true;
+
+		Manager.singleton.EndLevel("GameOverScene");
 	}
 
 	public void StartRolling()
