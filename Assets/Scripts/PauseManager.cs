@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour {
 
     public Canvas pauseMenu;
-    private bool pauseEnabled = false;
+    public bool pauseEnabled = false;
     public const float PauseSpeed = 0.0000001f;
 
     void Start()
