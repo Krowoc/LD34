@@ -3,10 +3,13 @@ using System.Collections;
 
 public class ChefController : MonoBehaviour {
 
-	//[SerializeField]
-	//float runningSpeed = 0.2f;
+    [SerializeField]
+    GameObject Pause;
 
-	[SerializeField]
+    //[SerializeField]
+    //float runningSpeed = 0.2f;
+
+    [SerializeField]
 	float catchupDistance = 100.0f;
 
 	[SerializeField]
@@ -17,6 +20,7 @@ public class ChefController : MonoBehaviour {
 
 	Animator anim;
 
+    bool initialStart = false;
 	bool isStarted = false;
 
 	// Use this for initialization
@@ -27,10 +31,19 @@ public class ChefController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Pause.GetComponent<PauseManager>().pauseEnabled == true)
+        {
+            isStarted = false;
+        }
+        else if (initialStart == true)
+        {
+            isStarted = true;
+        }
 
 		if (!isStarted)
 			return;
-		
+
+        initialStart = true;
 		Vector3 newPosition = transform.position;
 
 		//Move forward
