@@ -60,7 +60,8 @@ public class PauseManager : MonoBehaviour {
 
     public void OnMainMenuButton()
     {
-        SceneManager.LoadScene("MenuScene");
+        OnResumeButton();
+		Manager.singleton.EndLevel("MainMenu");
     }
 
     public void OnQuitButton()
