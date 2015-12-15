@@ -42,7 +42,7 @@ public class Manager : SingletonMonoBehaviour<Manager>
 				return;
 		}
 
-		if (distance > distanceScore)
+		//if (distance > distanceScore)
 			distanceScore = distance;
 
 		int d = (int)distanceScore;
