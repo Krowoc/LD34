@@ -4,7 +4,10 @@ using System.Collections;
 public class CatController : MonoBehaviour {
 
 	Animator anim;
-	
+	bool pouncing = false;
+
+	GameObject fish;
+
 	[SerializeField]
 	float collisionForce = 3.0f;
 
@@ -13,17 +16,27 @@ public class CatController : MonoBehaviour {
 	void Awake () {
 		anim = GetComponentInChildren<Animator>();
 	}
-	
+	void Start() {
+		BallController fishController = Object.FindObjectOfType<BallController>();
+		fish = fishController.gameObject;
+
+	}
+
 	// Update is called once per frame
 	void Update () {
-		
+		if (pouncing) {
+			Vector3 pos = fish.transform.position - transform.position;
+			pos.y = 0.0f;
+			Quaternion newRot = Quaternion.LookRotation(pos, Vector3.up);
+			transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 0.1f);
+		}
 	}
 
 	public void Pounce()
 	{
 		if(anim != null)
-			anim.SetTrigger("Pounce");
-
+			anim.SetTrigger ("Pounce");
+		pouncing = true;
 	}
 
 	public void Death()
@@ -39,6 +52,8 @@ public class CatController : MonoBehaviour {
 
 		transform.SetParent(null);
 
+		pouncing = false;
+
 		Rigidbody rBody = gameObject.AddComponent<Rigidbody>();
 
 		rBody.AddForce(collisionForce, 0f, collisionForce, ForceMode.VelocityChange);
@@ -49,11 +64,11 @@ public class CatController : MonoBehaviour {
 
 
 		GameObject.Destroy(gameObject);
-		
+
 	}
 
 	public void Win()
 	{
-		
+
 	}
 }
