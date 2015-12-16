@@ -17,8 +17,8 @@ public class CatController : MonoBehaviour {
 		anim = GetComponentInChildren<Animator>();
 	}
 	void Start() {
-		BallController fishController = Object.FindObjectOfType<BallController>();
-		fish = fishController.gameObject;
+
+		fish = GameObject.FindGameObjectWithTag("Player");
 
 	}
 

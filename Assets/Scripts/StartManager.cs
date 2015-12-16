@@ -14,7 +14,6 @@ public class StartManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//bool f = Manager.singleton.fading;
 		StartCoroutine(StartLevel());
 	}
 	
@@ -27,11 +26,11 @@ public class StartManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(delay);
 
-		Debug.Log("Start");
 		fish.StartRolling();
 		//fish.Jump(8000.0f);
 		Rigidbody frb = fish.gameObject.GetComponent<Rigidbody>();
 		frb.AddForce(11f, 10f, 0f, ForceMode.VelocityChange);
+
 		chef.StartRunning();
 	}
 }

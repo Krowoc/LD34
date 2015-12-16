@@ -5,8 +5,7 @@ public class BallController : MonoBehaviour {
 
 	SkinnedMeshRenderer shapes;
 
-	[SerializeField]
-	float scale = 0.0f;
+	public float scale = 0.0f;
 
 	[SerializeField]
 	float maximumScale = 1.0f;
@@ -34,8 +33,6 @@ public class BallController : MonoBehaviour {
 
 	float airTime;
 	float airStartTime;
-	//[SerializeField]
-	//float airTimeRecord;
 
 	float zPosition;
 

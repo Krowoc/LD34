@@ -9,10 +9,10 @@ public class Manager : SingletonMonoBehaviour<Manager>
 
 	SceneFade fadeObject;
 
-	int catScore = 0;
-	float distanceScore = 0.0f;
-	float distanceHighScore;
-	float airTimeScore = 0.0f;
+	public int catScore = 0;
+	public float distanceScore = 0.0f;
+	public float distanceHighScore;
+	public float airTimeScore = 0.0f;
 
 	Text scoreText;
 	Text airText;
@@ -20,8 +20,7 @@ public class Manager : SingletonMonoBehaviour<Manager>
 	// Use this for initialization
 	void Start () {
 
-
-
+		distanceHighScore = PlayerPrefs.GetFloat("HiScore");
 
 	}
 
@@ -56,6 +55,13 @@ public class Manager : SingletonMonoBehaviour<Manager>
 
 	public void updateAirTimeScore(float airTime)
 	{
+		//Don't count the first jump
+		if (airTimeScore == 0.0f)
+		{
+			airTimeScore = 0.1f;
+			return;
+		}
+
 		if (airTime > airTimeScore)
 			airTimeScore = airTime;
 
