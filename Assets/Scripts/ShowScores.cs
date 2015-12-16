@@ -12,7 +12,9 @@ public class ShowScores : MonoBehaviour {
 		scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
 		int score = (int)Manager.singleton.GetDistanceScore();
 		scoreText.text = score.ToString();
-		//Manager.singleton.updateDistanceScore(0.0f);
+
+		//TODO: put hiscore saving here
+
 	}
 	
 	// Update is called once per frame
