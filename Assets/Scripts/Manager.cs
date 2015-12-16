@@ -11,6 +11,7 @@ public class Manager : SingletonMonoBehaviour<Manager>
 
 	int catScore = 0;
 	float distanceScore = 0.0f;
+	float distanceHighScore;
 	float airTimeScore = 0.0f;
 
 	Text scoreText;
@@ -42,8 +43,12 @@ public class Manager : SingletonMonoBehaviour<Manager>
 				return;
 		}
 
-		if (distance > distanceScore)
+		//if (distance > distanceScore)
+		if(distance > 0.0f)
 			distanceScore = distance;
+
+		if (distanceScore > distanceHighScore)
+			distanceHighScore = distanceScore;
 
 		int d = (int)distanceScore;
 		scoreText.text = d.ToString();

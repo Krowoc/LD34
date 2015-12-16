@@ -17,6 +17,7 @@ public class ChefController : MonoBehaviour {
 
 	[SerializeField]
 	AnimationCurve speedOverTime;
+	float startingTime;
 
 	Animator anim;
 
@@ -27,6 +28,8 @@ public class ChefController : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Chasing");
+
+		startingTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -48,7 +51,7 @@ public class ChefController : MonoBehaviour {
 
 		//Move forward
 		//newPosition.x += runningSpeed;
-		newPosition.x += speedOverTime.Evaluate(Time.time * 0.1f);
+		newPosition.x += speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
 
 		//Keep on the ground
 		RaycastHit hit = new RaycastHit();
@@ -66,7 +69,7 @@ public class ChefController : MonoBehaviour {
 		//If ahead of fish, stop
 		if(distance < 0)
 		{
-			newPosition.x -= speedOverTime.Evaluate(Time.time * 0.1f);
+			newPosition.x -= speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
 			anim.SetBool("Running", false);
 		}
 		else
