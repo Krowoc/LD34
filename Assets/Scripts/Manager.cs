@@ -9,10 +9,10 @@ public class Manager : SingletonMonoBehaviour<Manager>
 
 	SceneFade fadeObject;
 
-	public int catScore = 0;
-	public float distanceScore = 0.0f;
-	public float distanceHighScore;
-	public float airTimeScore = 0.0f;
+	int catScore = 0;
+	float distanceScore = 0.0f;
+	float distanceHighScore;
+	float airTimeScore = 0.0f;
 
 	Text scoreText;
 	Text airText;
@@ -93,8 +93,30 @@ public class Manager : SingletonMonoBehaviour<Manager>
 		SceneManager.LoadScene(nextLevel);
 	}
 
+	public void ResetScores()
+	{
+		distanceScore = 0.0f;
+		airTimeScore = 0.0f;
+		catScore = 0;
+	}
+
 	public float GetDistanceScore()
 	{
 		return distanceScore;
+	}
+
+	public float GetHighScore()
+	{
+		return distanceHighScore;
+	}
+
+	public float GetAirScore()
+	{
+		return airTimeScore;
+	}
+
+	public int GetCatScore()
+	{
+		return catScore;
 	}
 }

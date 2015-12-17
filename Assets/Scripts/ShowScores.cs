@@ -18,30 +18,28 @@ public class ShowScores : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Debug.Log(Manager.singleton.GetDistanceScore());
-		//scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-		PlayerPrefs.SetFloat("HiScore", Manager.singleton.distanceHighScore);
 
-		int hiScore = (int)Manager.singleton.distanceHighScore;
+		PlayerPrefs.SetFloat("HiScore", Manager.singleton.GetHighScore());
+
+		int hiScore = (int)Manager.singleton.GetHighScore();
 		hiScoreText.text = hiScore.ToString();
 
-		int score = (int)Manager.singleton.distanceScore;
+		int score = (int)Manager.singleton.GetDistanceScore();
 		scoreText.text = score.ToString();
-		Manager.singleton.distanceScore = 0.0f;
 
-		int jumpScore = (int)Manager.singleton.airTimeScore;
+		int jumpScore = (int)Manager.singleton.GetAirScore();
 		string seconds = " seconds";
 		if (jumpScore == 1)
 			seconds = " second";
 		jumpScoreText.text = jumpScore.ToString() + seconds;
-		Manager.singleton.airTimeScore = 0.0f;
 
-		int catScore = Manager.singleton.catScore;
+		int catScore = Manager.singleton.GetCatScore();
 		if (catScore == 0)
 			catScoreText.text = "Pacifist!";
 		else
 			catScoreText.text = catScore.ToString();
-		Manager.singleton.catScore = 0;
+		
+		Manager.singleton.ResetScores();
 
 		//TODO: put hiscore saving here
 
