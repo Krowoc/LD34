@@ -8,10 +8,13 @@ public class BallController : MonoBehaviour {
 	public float scale = 0.0f;
 
 	[SerializeField]
+	float minimumScale = 0.25f;
+
+	[SerializeField]
 	float maximumScale = 1.0f;
 
 	[SerializeField]
-	float minimumScale = 0.25f;
+	float superScale = 1.5f;
 
 	[SerializeField]
 	float scaleSpeed = 0.05f;
@@ -22,10 +25,14 @@ public class BallController : MonoBehaviour {
 	[SerializeField]
 	float hopForce = 9.0f;
 
+	[SerializeField]
+	float maxVelocity = 30.0f;
 
-	Rigidbody rBody;
+
 	[SerializeField]
 	bool onGround = false;
+
+	Rigidbody rBody;
 
 	AudioSource audioFlop;
 	AudioSource audioInflate;
@@ -38,6 +45,8 @@ public class BallController : MonoBehaviour {
 
 	bool isDead = false;
 	bool isStarted = false;
+
+	float scaleLimit = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -73,9 +82,6 @@ public class BallController : MonoBehaviour {
 
 				Manager.singleton.updateAirTimeScore(airTime);
 
-				//if (airTime > airTimeRecord)
-				//	airTimeRecord = airTime;
-
 				audioFlop.Play();
 			}
 
@@ -90,7 +96,8 @@ public class BallController : MonoBehaviour {
 			onGround = false;
 		}
 
-		if(Input.GetKeyDown(KeyCode.Z))
+		//Hop
+		if(Input.GetButtonDown("Inflate"))
 		{
 			if (onGround)
 			{
@@ -100,22 +107,40 @@ public class BallController : MonoBehaviour {
 
 		}
 
-		if (Input.GetKey(KeyCode.Z))
+		
+		//SuperInflate
+		if (Input.GetButton("Inflate") && Input.GetButton("Deflate"))
+		{
+			if(scale == 1.0f)
+				//Jump(10.0f);
+
+			scaleLimit = 2.0f;
+
+			scale += scaleSpeed;
+		}
+		else 
+		{
+			if (scaleLimit > 1.0f)
+				scaleLimit -= scaleSpeed;
+			if (scaleLimit < 1.0f)
+				scaleLimit = 1.0f;
+			
+		}
+
+		//Inflate
+		if (Input.GetButton("Inflate") && !Input.GetButton("Deflate"))
 		{
 			if (scale == 0.0f)
 			{
 				audioInflate.Play();
-
-
 			}
 
 			scale += scaleSpeed;
-			if (scale > 1.0f)
-				scale = 1.0f;
-			
+
 		}
 
-		if (Input.GetKey(KeyCode.X))
+		//Deflate
+		if (Input.GetButton("Deflate") && !Input.GetButton("Inflate"))
 		{
 			if (scale == 1.0f)
 			{
@@ -123,25 +148,26 @@ public class BallController : MonoBehaviour {
 			}
 
 			scale -= scaleSpeed;
-			if (scale < 0.0f)
-				scale = 0.0f;
-			
+
 		}
 
-		float newScale = Mathf.Lerp(minimumScale, maximumScale, scale);
-		transform.localScale = new Vector3(newScale, newScale, newScale);
-		AnimateInflation(newScale);
+		//Limit scale
+		if (scale > scaleLimit)
+			scale = scaleLimit;
+		if (scale < 0.0f)
+			scale = 0.0f;
 
+		Scale();
 
 		//Keep from drifting off the track
 		Vector3 clampedPosition = transform.position;
 		clampedPosition.z = zPosition;
 		transform.position = clampedPosition;
 
-		//Debug.Log(rBody.velocity.magnitude);
-		if(rBody.velocity.magnitude > 30.0f)
+		//Limit speed
+		if(rBody.velocity.magnitude > maxVelocity)
 		{
-			rBody.velocity = rBody.velocity.normalized * 30.0f;
+			rBody.velocity = rBody.velocity.normalized * maxVelocity;
 		}
 
 
@@ -153,19 +179,38 @@ public class BallController : MonoBehaviour {
 		rBody.AddForce(new Vector3(hopForce, hopForce, 0f), ForceMode.Impulse);
 	}
 
-	void AnimateInflation(float scale)
+	void Scale()
 	{
-		float s = Mathf.InverseLerp(maximumScale, minimumScale, scale);
-		
-		shapes.SetBlendShapeWeight(0, s * 100.0f);
-		
+		//Normal Scale
+		if (scale <= 1.0f)
+		{
+			//Size
+			float newScale = Mathf.Lerp(minimumScale, maximumScale, scale);
+			transform.localScale = new Vector3(newScale, newScale, newScale);
+
+			//Animation
+			float s = Mathf.Lerp(100.0f, 0.0f, scale);
+			shapes.SetBlendShapeWeight(0, s);
+			shapes.SetBlendShapeWeight(1, 0f);
+		}
+		//Super Scale
+		else 
+		{
+			//Size
+			float newScale = Mathf.Lerp(maximumScale, superScale, scale - 1.0f);
+			transform.localScale = new Vector3(newScale, newScale, newScale);
+
+			//Animation
+			float s = Mathf.Lerp(0.0f, 100.0f, scale - 1.0f);
+			shapes.SetBlendShapeWeight(1, s);
+			shapes.SetBlendShapeWeight(0, 0f);
+		}
+
 	}
 
 	public bool isCaught()
 	{
-		float midScale = minimumScale + ((maximumScale - minimumScale) / 2);
-
-		if(transform.localScale.x > midScale)
+		if(scale > 0.5f)
 			return false;
 		else
 		{

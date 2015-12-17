@@ -41,8 +41,6 @@ public class ShowScores : MonoBehaviour {
 		
 		Manager.singleton.ResetScores();
 
-		//TODO: put hiscore saving here
-
 	}
 	
 	// Update is called once per frame
