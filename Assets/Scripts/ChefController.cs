@@ -19,6 +19,8 @@ public class ChefController : MonoBehaviour {
 	AnimationCurve speedOverTime;
 	float startingTime;
 
+	float followOffest = 50.0f;
+
 	Animator anim;
 
     bool initialStart = false;
@@ -54,9 +56,13 @@ public class ChefController : MonoBehaviour {
 		newPosition.x += speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
 
 		//Keep on the ground
+		float offset = 2.0f;
+		Vector3 groundCheck = transform.position;
+		groundCheck.y += offset;
+
 		RaycastHit hit = new RaycastHit();
-		Physics.Raycast(transform.position, Vector3.down, out hit);
-		newPosition.y -= hit.distance;
+		Physics.Raycast(groundCheck, Vector3.down, out hit);
+		newPosition.y -= hit.distance - offset;
 
 		//Get distance to fish
 		float distance = target.transform.position.x - newPosition.x;
