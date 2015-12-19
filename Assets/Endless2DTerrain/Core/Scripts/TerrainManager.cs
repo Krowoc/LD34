@@ -240,7 +240,7 @@ namespace Endless2DTerrain
             {
                 TerrainObject = new GameObject(managerName);
                 TerrainObject.transform.parent = settings.terrainDisplayer.transform;
-            }            
+			}            
         }
 
         public void RemoveTerrainObject()
