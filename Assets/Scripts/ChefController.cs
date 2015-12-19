@@ -16,10 +16,12 @@ public class ChefController : MonoBehaviour {
 	GameObject target;
 
 	[SerializeField]
-	AnimationCurve speedOverTime;
-	float startingTime;
+	float followOffset = 25.0f;
+	[SerializeField]
+	float followAdvance = 0.005f;
+	//AnimationCurve speedOverTime;
+	//float startingTime;
 
-	float followOffset = 25.0f;                                                                                                                                                              
 
 	Animator anim;
 
@@ -31,7 +33,7 @@ public class ChefController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Chasing");
 
-		startingTime = Time.time;
+		//startingTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -54,10 +56,13 @@ public class ChefController : MonoBehaviour {
 
 		Vector3 newPosition = transform.position;
 
+		followOffset -= followAdvance;
+		if (followOffset < 0.0f)
+			followOffset = 0.0f;
 		//Move forward
 		//newPosition.x += runningSpeed;
 		//newPosition.x += speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
-		if (transform.position.x > target.transform.position.x - followOffset - 4.0f)
+		/*if (transform.position.x > target.transform.position.x - followOffset - 4.0f)
 		{
 			newPosition.x += runningSpeed;
 			//newPosition.x = Mathf.Lerp(transform.position.x, target.transform.position.x - followOffset, catchupSpeed);
@@ -65,7 +70,11 @@ public class ChefController : MonoBehaviour {
 		else
 		{
 			newPosition.x = Mathf.Lerp(transform.position.x, target.transform.position.x - followOffset, catchupSpeed);
-		}
+		}*/
+
+		newPosition.x = Mathf.Lerp(transform.position.x, target.transform.position.x - followOffset, catchupSpeed);
+		if (newPosition.x < transform.position.x + runningSpeed)
+			newPosition.x = transform.position.x + runningSpeed;
 
 
 		//Keep on the ground
