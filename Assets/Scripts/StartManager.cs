@@ -4,7 +4,7 @@ using System.Collections;
 public class StartManager : MonoBehaviour {
 
 	[SerializeField]
-	BallController fish;
+	FishController fish;
 
 	[SerializeField]
 	ChefController chef;

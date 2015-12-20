@@ -131,7 +131,7 @@ public class ChefController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		BallController fish = other.GetComponent<BallController>();
+		FishController fish = other.GetComponent<FishController>();
 
 		if(fish != null)
 		{

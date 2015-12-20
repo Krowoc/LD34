@@ -20,7 +20,7 @@ public class CatAnimationTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		BallController fish = collider.gameObject.GetComponent<BallController>();
+		FishController fish = collider.gameObject.GetComponent<FishController>();
 		if (fish == null)
 			return;
 
