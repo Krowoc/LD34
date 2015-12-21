@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ChefController : MonoBehaviour {
 
@@ -25,11 +26,14 @@ public class ChefController : MonoBehaviour {
 
 	Animator anim;
 
-    bool initialStart = false;
-	bool isStarted = false;
+    //bool initialStart = false;
+	[SerializeField]
+	bool stopped = true;
+	bool paused = false;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Chasing");
 
@@ -41,37 +45,24 @@ public class ChefController : MonoBehaviour {
 	{
 	    if (Pause.GetComponent<PauseManager>().pauseEnabled == true)
         {
-            isStarted = false;
+			paused = true;
         }
-        else if (initialStart == true)
+        else
         {
-            isStarted = true;
+			paused = false;
         }
 
 
-		if (!isStarted)
+		if (stopped || paused)
 			return;
-
-        initialStart = true;
-
+		
 		Vector3 newPosition = transform.position;
 
 		followOffset -= followAdvance;
 		if (followOffset < 0.0f)
 			followOffset = 0.0f;
-		//Move forward
-		//newPosition.x += runningSpeed;
-		//newPosition.x += speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
-		/*if (transform.position.x > target.transform.position.x - followOffset - 4.0f)
-		{
-			newPosition.x += runningSpeed;
-			//newPosition.x = Mathf.Lerp(transform.position.x, target.transform.position.x - followOffset, catchupSpeed);
-		}
-		else
-		{
-			newPosition.x = Mathf.Lerp(transform.position.x, target.transform.position.x - followOffset, catchupSpeed);
-		}*/
 
+		//Move forward
 		newPosition.x = Mathf.Lerp(transform.position.x, target.transform.position.x - followOffset, catchupSpeed);
 		if (newPosition.x < transform.position.x + runningSpeed)
 			newPosition.x = transform.position.x + runningSpeed;
@@ -93,25 +84,19 @@ public class ChefController : MonoBehaviour {
 		newPosition.y -= hit.distance - offset;
 
 
-		//Get distance to fish
-		float distance = target.transform.position.x - newPosition.x;
-
-		//If way behind, catch up
-		/*if (distance > catchupDistance)
-		{
-			newPosition.x += 10.0f;//= target.transform.position.x - catchupDistance;
-		}*/
-
 		//If ahead of fish, stop
-		if(distance < 0)
+		if(transform.position.x > target.transform.position.x)
 		{
-			newPosition.x -= runningSpeed;//speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
+			ChefStopCoroutine(0.1f);
+			//newPosition.x -= runningSpeed;//speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
 			anim.SetBool("Running", false);
 		}
 		else
 		{
+			//stopped = false;
 			anim.SetBool("Running", true);
 		}
+
 
 		//Apply transformations
 		transform.position = newPosition;
@@ -122,11 +107,6 @@ public class ChefController : MonoBehaviour {
 	public void Win()
 	{
 		anim.SetTrigger("KnifeWave");
-	}
-
-	public void StartRunning()
-	{
-		isStarted = true;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -140,6 +120,47 @@ public class ChefController : MonoBehaviour {
 
 			GetComponent<AudioSource>().Play();
 		}
+
+	}
+
+	public void HitBeehive()
+	{
+		if (stopped)
+			return;
+
+		StartCoroutine(HitBeehiveCoroutine());
+
+	}
+
+	public IEnumerator HitBeehiveCoroutine()
+	{
+
+		followOffset += 1.0f;
+
+		anim.SetTrigger("KnifeWave");
+
+		yield return StartCoroutine(ChefStopCoroutine(2.0f));
+
+		anim.SetTrigger("Chasing");
+	}
+
+	public void StopMoving(float duration)
+	{
+		StartCoroutine(ChefStopCoroutine(duration));
+	}
+
+	public void StartMoving()
+	{
+		stopped = false;
+	}
+
+	IEnumerator ChefStopCoroutine(float duration)
+	{
+		stopped = true;
+
+		yield return new WaitForSeconds(duration);
+			
+		stopped = false;
 
 	}
 }

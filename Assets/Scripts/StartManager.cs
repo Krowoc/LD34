@@ -15,6 +15,7 @@ public class StartManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(StartLevel());
+		//chef.Stop(delay);
 	}
 	
 	// Update is called once per frame
@@ -31,6 +32,6 @@ public class StartManager : MonoBehaviour {
 		Rigidbody frb = fish.gameObject.GetComponent<Rigidbody>();
 		frb.AddForce(11f, 10f, 0f, ForceMode.VelocityChange);
 
-		chef.StartRunning();
+		chef.StartMoving();
 	}
 }
