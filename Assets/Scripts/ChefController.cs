@@ -87,7 +87,8 @@ public class ChefController : MonoBehaviour {
 		//If ahead of fish, stop
 		if(transform.position.x > target.transform.position.x)
 		{
-			ChefStopCoroutine(0.1f);
+			//newPosition.x = transform.position.x;
+			StartCoroutine(ChefStopCoroutine(1.0f));
 			//newPosition.x -= runningSpeed;//speedOverTime.Evaluate((Time.time - startingTime) * 0.1f);
 			anim.SetBool("Running", false);
 		}
