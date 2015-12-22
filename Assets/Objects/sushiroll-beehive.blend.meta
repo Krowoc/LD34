@@ -1,22 +1,17 @@
 fileFormatVersion: 2
-guid: a2ae3e66a8e3c467aaa523c3ffde7fea
-timeCreated: 1450393139
+guid: cade8c7f6807441bbb2650db79a77910
+timeCreated: 1450638810
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Bone
-    100002: Pelican
-    100004: Pelican-Armature
-    100006: //RootNode
-    400000: Bone
-    400002: Pelican
-    400004: Pelican-Armature
-    400006: //RootNode
-    4300000: Pelican
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Beehive
     7400000: Default Take
     9500000: //RootNode
-    13700000: Pelican
   materials:
     importMaterials: 1
     materialName: 0
@@ -60,7 +55,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
