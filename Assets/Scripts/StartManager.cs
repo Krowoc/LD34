@@ -30,7 +30,7 @@ public class StartManager : MonoBehaviour {
 		fish.StartRolling();
 		//fish.Jump(8000.0f);
 		Rigidbody frb = fish.gameObject.GetComponent<Rigidbody>();
-		frb.AddForce(11f, 10f, 0f, ForceMode.VelocityChange);
+		frb.AddForce(11f, 9f, 0f, ForceMode.VelocityChange);
 
 		chef.StartMoving();
 	}

@@ -98,9 +98,13 @@ public class ChefController : MonoBehaviour {
 			anim.SetBool("Running", true);
 		}
 
+		//Limit speed, specifically for steep hills TODO: needs more thorough testing
+		Vector3 positionDiff = newPosition - transform.position;
+		Vector3.ClampMagnitude(positionDiff, 0.4f);
 
 		//Apply transformations
-		transform.position = newPosition;
+		//transform.position = newPosition;
+		transform.position += positionDiff;
 
 
 	}

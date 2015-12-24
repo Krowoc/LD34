@@ -35,6 +35,9 @@ public class BeehiveController : MonoBehaviour {
 		if (fish != null)
 		{
 			PhysicsEnabled(true);
+			GameObject beePrefab = Instantiate(bees);
+			beePrefab.transform.position = transform.position;
+
 		}
 
 		ChefController chef = other.GetComponent<ChefController>();
@@ -43,8 +46,6 @@ public class BeehiveController : MonoBehaviour {
 		{
 			chef.HitBeehive();
 			StartCoroutine(Despawn(2.0f));
-			GameObject beePrefab = Instantiate(bees);
-			beePrefab.transform.position = transform.position;
 
 		}
 	}
