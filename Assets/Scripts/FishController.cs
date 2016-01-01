@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BallController : MonoBehaviour {
+public class FishController : MonoBehaviour {
 
 	SkinnedMeshRenderer shapes;
 

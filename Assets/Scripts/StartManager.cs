@@ -4,7 +4,7 @@ using System.Collections;
 public class StartManager : MonoBehaviour {
 
 	[SerializeField]
-	BallController fish;
+	FishController fish;
 
 	[SerializeField]
 	ChefController chef;
@@ -15,6 +15,7 @@ public class StartManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(StartLevel());
+		//chef.Stop(delay);
 	}
 	
 	// Update is called once per frame
@@ -29,8 +30,8 @@ public class StartManager : MonoBehaviour {
 		fish.StartRolling();
 		//fish.Jump(8000.0f);
 		Rigidbody frb = fish.gameObject.GetComponent<Rigidbody>();
-		frb.AddForce(11f, 10f, 0f, ForceMode.VelocityChange);
+		frb.AddForce(11f, 9f, 0f, ForceMode.VelocityChange);
 
-		chef.StartRunning();
+		chef.StartMoving();
 	}
 }

@@ -9,13 +9,13 @@ public class ShadowController : MonoBehaviour {
 	[SerializeField]
 	float growAmount = 3.0f;
 
-	BallController fishController;
+	FishController fishController;
 	Projector shadow;
 	float startingSize;
 
 	// Use this for initialization
 	void Start () {
-		fishController = fish.GetComponent<BallController>();
+		fishController = fish.GetComponent<FishController>();
 		shadow = GetComponent<Projector>();
 		startingSize = shadow.orthographicSize;
 	}
