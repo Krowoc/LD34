@@ -11,6 +11,9 @@ public class ShowScores : MonoBehaviour {
 	Text scoreText;
 
 	[SerializeField]
+	Text scoreText2;
+
+	[SerializeField]
 	Text jumpScoreText;
 
 	[SerializeField]
@@ -26,6 +29,7 @@ public class ShowScores : MonoBehaviour {
 
 		int score = (int)Manager.singleton.GetDistanceScore();
 		scoreText.text = score.ToString();
+		scoreText2.text = score.ToString ();
 
 		int jumpScore = (int)Manager.singleton.GetAirScore();
 		string seconds = " seconds";
