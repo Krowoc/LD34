@@ -21,6 +21,11 @@ public class PauseManager : MonoBehaviour {
     void Update()
     {
 
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			SceneManager.LoadScene("MainScene001");
+		}
+
         //check if pause button (escape key) is pressed
         if (Input.GetKeyDown("escape"))
         {

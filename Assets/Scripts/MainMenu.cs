@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour {
             else
                 OnBackButton();
         }
+
     }
 
     public void OnStartButton()
